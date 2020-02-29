@@ -6,15 +6,19 @@ public class Book {
     String publisher;
     String isbn ;
 
-    public Book(String Booktitle, String  Bookauthor, int  BookrelaseDate,
-                int  Bookpages, String  Bookpublisher, String  Bookisbn) {
-        this.title =  Booktitle;
-        this.author =  Bookauthor;
-        this.relaseDate = BookrelaseDate;
-        this.pages =  Bookpages;
-        this.publisher =  Bookpublisher;
-        this.isbn =  Bookisbn;
+    public Book(String title, String author, int relaseDate, int pages, String publisher) {
+        this.title = title;
+        this.author = author;
+        this.relaseDate = relaseDate;
+        this.pages = pages;
+        this.publisher = publisher;
     }
+
+    public Book(String title, String author, int relaseDate, int pages, String publisher, String isbn) {
+        this(title,author,relaseDate,pages,publisher);
+        this.isbn = isbn;
+    }
+
 
     void printInfo() {
         String info = title+" "+ author+ " "+ relaseDate+ " "+ pages + " "+ publisher +" "+ isbn;
