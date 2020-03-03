@@ -2,22 +2,25 @@ package pl.javaStart.Library.app;
 
 import pl.javaStart.Library.model.Book;
 
+import java.sql.SQLOutput;
+import java.util.Scanner;
+
 public class Library {
     public static void main(String[] args) {
-        final String appName = "Biblioteka v0.5";
+        final String appName = "Biblioteka v0.8";
+        Scanner sc = new Scanner(System.in);
+
+        Book[] books = new Book[1000];
+        DataReader dataReader = new DataReader();
+        books[0] = dataReader.readAndCreateBook();
+        books[1] =dataReader.readAndCreateBook();
 
 
-        Book book1 = new Book("W pustyni i w puszczy","Henryk Sienkiewicz",2010,
-                296,"Greg","9788373271890");
-        Book book2 = new Book("Java. Efektywne programowanie. Wydanie II", "Joshua Bloch",
-                2009,352,"Helion","9788324620845");
-        Book book3 = new Book("SCJP Sun Certified Programmer for Java 6 Study Guide","Beret Bates Katherine Siera",
-                2008,851,"McGraw-Hill Osborne Media");
+dataReader.close();
 
         System.out.println(appName);
         System.out.println("Ksiązki w bibliotece");
-        book1.printInfo();
-        book2.printInfo();
-        book3.printInfo();
+        books[0].printInfo();
+        books[1].printInfo();
     }
 }
