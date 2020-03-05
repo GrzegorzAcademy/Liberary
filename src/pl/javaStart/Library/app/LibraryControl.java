@@ -4,9 +4,9 @@ import pl.javaStart.Library.model.Book;
 import pl.javaStart.Library.model.Library;
 
 public class LibraryControl {
-    private final int exit = 0;
-    private final int addBook = 1;
-    private  final  int printBooks = 2;
+    private static final int EXIT = 0;
+    private static final int ADDBOOK = 1;
+    private static final  int PRINTBOOKS = 2;
 
     private DataReader dataReader = new DataReader();
     private Library library = new Library();
@@ -18,16 +18,16 @@ public class LibraryControl {
             printOptions();
             option = dataReader.getInt();
             switch (option) {
-                case addBook:
+                case ADDBOOK:
                     addBook();
                     break;
-                case printBooks:
+                case PRINTBOOKS:
                     printBooks();
                     break;
-                case exit:
+                case EXIT:
                     exit();
             }
-        } while (option!= exit);
+        } while (option!= EXIT);
     }
 
         private void printOptions () {
