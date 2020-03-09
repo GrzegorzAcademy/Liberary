@@ -1,44 +1,50 @@
 package pl.javaStart.Library.model;
 
 public class Library {
-       private final int MAX_BOOKS = 1000;
-       private final int MAX_MAGAZINE = 1000;
-       private  Book [] books = new Book[MAX_BOOKS];
-       private Magazine[] magazines = new Magazine[MAX_MAGAZINE];
-        private int booksNumber = 0;
-        private int magazinsNumber = 0;
+
+    private final int MAX_PUBLICATIONS = 2000;
+    private int publicationsNumber = 0;
+    private Publication[] publications  = new Publication[ MAX_PUBLICATIONS];
 
        public void addBook(Book book){
-           if( booksNumber<MAX_BOOKS){
-               books[booksNumber] = book;
-               booksNumber++;
+           if( publicationsNumber<MAX_PUBLICATIONS){
+               publications[publicationsNumber] = book;
+               publicationsNumber++;
            } else{
-               System.out.println("Maksymalna liczba książek została przekroczona ");
+               System.out.println("Maksymalna liczba publikacji została przekroczona ");
            }
        }
        public void printBooks(){
-           if (booksNumber == 0){
-               System.out.println("Brak ksiązek w bibliotece");
+           int countBooks = 0;
+           for (int i = 0; i <publicationsNumber; i++) {
+               if (publications[i] instanceof Book){
+                   publications[i].printInfo();
+           countBooks++;
+              }
            }
-           for (int i = 0; i <booksNumber ; i++) {
-               books[i].printInfo();
+           if (countBooks== 0){
+            System.out.println("Brak ksiązek w bibliotece");
 
            }
        }
     public void addMagazine(Magazine magazine) {
-        if (magazinsNumber < MAX_MAGAZINE) {
-            magazines[magazinsNumber] = magazine;
-            magazinsNumber++;
+        if (publicationsNumber < MAX_PUBLICATIONS) {
+            publications[publicationsNumber] = magazine;
+            publicationsNumber++;
         } else {
             System.out.println("Maksymalna liczba magazynów została przekroczona ");
         }
     }
         public void printMagazines() {
-            if (magazinsNumber == 0) {
-                System.out.println("Brak magazynow w bibliotece");
+            int countMagazines = 0;
+            for (int i = 0; i <publicationsNumber; i++) {
+                if (publications[i] instanceof Magazine) {
+                    publications[i].printInfo();
+                    countMagazines++;
+                }
             }
-            for (int i = 0; i < magazinsNumber; i++) {
-                magazines[i].printInfo();
+            if (countMagazines== 0){
+                System.out.println("Brak magazynów w bibliotece");
 
             }
         }

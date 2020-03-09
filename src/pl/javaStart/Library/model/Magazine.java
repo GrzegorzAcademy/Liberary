@@ -36,6 +36,7 @@ public class Magazine extends Publication {
     public void setLanguae(String languae) {
         this.languae = languae;
     }
+   @Override
     public void printInfo(){
         String info = getTitle()+ "; "+ getPublisher()+ "; "+ getYear()
                 + "- "+ month+ "- "+ day + ", "+ languae;

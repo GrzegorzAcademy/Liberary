@@ -50,7 +50,7 @@ public class LibraryControl {
     private void printOptions () {
             System.out.println("Wybierz opcje");
             System.out.println(EXIT + "  wyjscie z programu");
-            System.out.println(ADD_BOOK +"  odanie noewj książki ");
+            System.out.println(ADD_BOOK +"  odanie nowej książki ");
             System.out.println(PRINT_BOOKS + "  dostepne książki");
             System.out.println(ADD_MAGAZINE + "  Dodanie magazynu");
             System.out.println(PRINT_MAGAZINE + "  Wysietlanie dostepnych magazynów");
