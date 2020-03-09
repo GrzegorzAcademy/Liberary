@@ -1,32 +1,17 @@
 package pl.javaStart.Library.model;
 
-public class Book {
-    private String title ;
+public class Book extends Publication{
+
     private String author ;
-    private int relaseDate ;
     private int pages;
-    private String publisher;
     private String isbn ;
 
-    public Book(String title, String author, int relaseDate, int pages, String publisher) {
-        this.title = title;
+    public Book(String title, String author, int year, int pages, String publisher, String isbn) {
+        super(title,publisher,year);
         this.author = author;
-        this.relaseDate = relaseDate;
         this.pages = pages;
-        this.publisher = publisher;
-    }
-
-    public Book(String title, String author, int relaseDate, int pages, String publisher, String isbn) {
-        this(title,author,relaseDate,pages,publisher);
         this.isbn = isbn;
-    }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getAuthor() {
@@ -37,28 +22,12 @@ public class Book {
         this.author = author;
     }
 
-    public int getRelaseDate() {
-        return relaseDate;
-    }
-
-    public void setRelaseDate(int relaseDate) {
-        this.relaseDate = relaseDate;
-    }
-
     public int getPages() {
         return pages;
     }
 
     public void setPages(int pages) {
         this.pages = pages;
-    }
-
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
     }
 
     public String getIsbn() {
@@ -70,7 +39,8 @@ public class Book {
     }
 
     public void printInfo() {
-        String info = title+" ; "+ author+ " ; "+ relaseDate+ " ; "+ pages + " ; "+ publisher;
+        String info = getTitle()+" ; "+ author+ " ; "+getYear()+ " ; "+ pages + " ; "+ getPublisher();
+
         if(isbn!= null) {
             info = info+ " ; "+ isbn;
         }
