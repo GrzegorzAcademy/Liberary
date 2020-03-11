@@ -5,37 +5,32 @@ import pl.javaStart.Library.model.Library;
 import pl.javaStart.Library.model.Magazine;
 
 public class LibraryControl {
-    private static final int EXIT = 0;
-    private static final int ADD_BOOK = 1;
-    private static final  int PRINT_BOOKS = 2;
-    private static final int ADD_MAGAZINE = 3;
-    private static final  int PRINT_MAGAZINE = 4;
 
-    private DataReader dataReader = new DataReader();
+       private DataReader dataReader = new DataReader();
     private Library library = new Library();
 
     public void controlLoop() {
-        int option;
+        Option option;
         do {
             printOptions();
-            option = dataReader.getInt();
+            option = Option.inToInt(dataReader.getInt());
             switch (option) {
                 case ADD_BOOK:
                     addBook();
                     break;
-                    case ADD_MAGAZINE:
+                case ADD_MAGAZINES:
                     addMagazine();
                     break;
                 case PRINT_BOOKS:
                     printBooks();
                     break; 
-                    case PRINT_MAGAZINE:
+                case PRINT_MAGAZINES:
                     printMagazines();
                     break;
                 case EXIT:
                     exit();
             }
-        } while (option!= EXIT);
+        } while (option!= Option.EXIT);
     }
 
     private void printMagazines() {
@@ -49,11 +44,9 @@ public class LibraryControl {
 
     private void printOptions () {
             System.out.println("Wybierz opcje");
-            System.out.println(EXIT + "  wyjscie z programu");
-            System.out.println(ADD_BOOK +"  odanie nowej książki ");
-            System.out.println(PRINT_BOOKS + "  dostepne książki");
-            System.out.println(ADD_MAGAZINE + "  Dodanie magazynu");
-            System.out.println(PRINT_MAGAZINE + "  Wysietlanie dostepnych magazynów");
+        for (Option option : Option.values()) {
+            System.out.println(option);
+        }
         }
 
 private void exit() {
