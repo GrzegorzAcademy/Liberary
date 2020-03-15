@@ -1,5 +1,6 @@
 package pl.javaStart.Library.app;
 
+import pl.javaStart.Library.io.DataReader;
 import pl.javaStart.Library.model.Book;
 import pl.javaStart.Library.model.Library;
 import pl.javaStart.Library.model.Magazine;
@@ -9,7 +10,7 @@ public class LibraryControl {
        private DataReader dataReader = new DataReader();
     private Library library = new Library();
 
-    public void controlLoop() {
+    public void controlLoop() throws NoSuchFieldException {
         Option option;
         do {
             printOptions();

@@ -1,4 +1,4 @@
-package pl.javaStart.Library.app;
+package pl.javaStart.Library.io;
 
 import pl.javaStart.Library.model.Book;
 import pl.javaStart.Library.model.Magazine;
@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class DataReader {
     private Scanner sc = new Scanner(System.in);
 
-    Book readAndCreateBook() {
+    public Book readAndCreateBook() {
         System.out.println("Tytuł");
         String title = sc.nextLine();
         System.out.println("Autor");
@@ -23,7 +23,7 @@ public class DataReader {
         int pages =getInt();
         return new Book(title, author, relaseDate, pages, publisher, isbn);
     }
-    Magazine readAndCreateMagazine() {
+    public Magazine readAndCreateMagazine() {
             System.out.println("Tytuł");
             String title = sc.nextLine();
             System.out.println("Wydwnictwo");
