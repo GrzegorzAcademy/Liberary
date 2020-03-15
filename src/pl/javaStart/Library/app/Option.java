@@ -28,7 +28,7 @@ public enum Option {
     public String toString() {
         return value + " - " + description ;
     }
-    static Option inToInt(int option) throws NoSuchFieldException {
+    static Option createFromInt(int option) throws NoSuchFieldException {
         try{
            return Option.values()[option];
     }catch (ArrayIndexOutOfBoundsException e){
