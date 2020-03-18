@@ -29,17 +29,17 @@ public class DataReader {
         return new Book(title, author, relaseDate, pages, publisher, isbn);
     }
     public Magazine readAndCreateMagazine() {
-            printer.printLine("Tytuł");
+            printer.printLine(" Tytuł");
             String title = sc.nextLine();
-            printer.printLine("Wydwnictwo");
+            printer.printLine(" Wydwnictwo");
             String publisher = sc.nextLine();
-            printer.printLine("Język");
+            printer.printLine(" Język");
             String langaue = sc.nextLine();
-            printer.printLine("Rok Wydania");
+            printer.printLine(" Rok Wydania");
             int year = getInt();
-            printer.printLine("<Miesiac");
+            printer.printLine(" Miesiac");
             int month = sc.nextInt();
-            printer.printLine("Dzień");
+            printer.printLine(" Dzień");
             int day = getInt();
 
             return new Magazine ( title,publisher,langaue,year,month,day);
