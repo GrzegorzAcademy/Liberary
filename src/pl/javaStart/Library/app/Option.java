@@ -1,6 +1,5 @@
 package pl.javaStart.Library.app;
 
-import javax.crypto.spec.OAEPParameterSpec;
 
 public enum Option {
     EXIT(0,"Wyjście z programu"),
@@ -32,7 +31,7 @@ public enum Option {
         try{
            return Option.values()[option];
     }catch (ArrayIndexOutOfBoundsException e){
-    throw new NoSuchFieldException("no option with id" + option);
+    throw new NoSuchFieldException("no option with id try again " + option);
 
 
     }
