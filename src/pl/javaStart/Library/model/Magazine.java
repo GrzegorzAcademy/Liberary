@@ -56,6 +56,6 @@ public class Magazine extends Publication {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), month, day, languae);
+        return Objects.hash(super.hashCode(), month, day, languae + " ");
     }
 }

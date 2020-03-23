@@ -14,7 +14,7 @@ public class DataReader {
     }
 
     public Book readAndCreateBook() {
-       printer.printLine("Tytuł");
+        printer.printLine("Tytuł");
         String title = sc.nextLine();
         printer.printLine("Autor");
         String author = sc.nextLine();
@@ -25,35 +25,40 @@ public class DataReader {
         printer.printLine("Rok Wydania");
         int relaseDate = getInt();
         printer.printLine("Liczba stron");
-        int pages =getInt();
+        int pages = getInt();
         return new Book(title, author, relaseDate, pages, publisher, isbn);
     }
+
     public Magazine readAndCreateMagazine() {
-            printer.printLine(" Tytuł");
-            String title = sc.nextLine();
-            printer.printLine(" Wydwnictwo");
-            String publisher = sc.nextLine();
-            printer.printLine(" Język");
-            String langaue = sc.nextLine();
-            printer.printLine(" Rok Wydania");
-            int year = getInt();
-            printer.printLine(" Miesiac");
-            int month = sc.nextInt();
-            printer.printLine(" Dzień");
-            int day = getInt();
+        printer.printLine(" Tytuł");
+        String title = sc.nextLine();
+        printer.printLine(" Wydwnictwo");
+        String publisher = sc.nextLine();
+        printer.printLine(" Język");
+        String langaue = sc.nextLine();
+        printer.printLine(" Rok Wydania");
+        int year = getInt();
+        printer.printLine(" Miesiac ");
+        int month = sc.nextInt();
+        printer.printLine(" Dzień ");
+        int day = getInt();
 
-            return new Magazine ( title,publisher,langaue,year,month,day);
-        }
-
-
-    public void close(){
-        sc.close();
+        return new Magazine(title, publisher, langaue, year, month, day);
     }
-    public int getInt(){
+
+    public int getInt() {
         try {
             return sc.nextInt();
         } finally {
-           sc.nextLine();
+            sc.nextLine();
         }
+    }
+
+    public String getString() {
+        return sc.nextLine();
+    }
+
+    public void close() {
+        sc.close();
     }
 }

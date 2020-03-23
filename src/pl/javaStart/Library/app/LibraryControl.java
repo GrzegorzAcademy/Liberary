@@ -1,7 +1,11 @@
 package pl.javaStart.Library.app;
 
+import pl.javaStart.Library.exeptions.DataExportExeption;
+import pl.javaStart.Library.exeptions.DataImportExeption;
 import pl.javaStart.Library.io.ConsolePrinter;
 import pl.javaStart.Library.io.DataReader;
+import pl.javaStart.Library.io.file.FileMenagerBuldier;
+import pl.javaStart.Library.io.file.Filemenager;
 import pl.javaStart.Library.model.Book;
 import pl.javaStart.Library.model.Library;
 import pl.javaStart.Library.model.Magazine;
@@ -14,7 +18,21 @@ public class LibraryControl {
 
     private ConsolePrinter printer = new ConsolePrinter();
     private DataReader dataReader = new DataReader(printer);
-    private Library library = new Library();
+    private Library library ;
+    private Filemenager fileMenager;
+
+
+   LibraryControl() {
+        fileMenager = new FileMenagerBuldier(printer, dataReader).bulid();
+       try {
+           library = fileMenager.importdata();
+       }catch (DataImportExeption e){
+           printer.printLine(e.getMessage());
+           System.out.println("zainicjowano nową bazę ");
+           library = new Library();
+       }
+
+    }
 
     void controlLoop() {
         Option option;
@@ -84,6 +102,12 @@ public class LibraryControl {
     }
 
     private void exit() {
+       try{
+       fileMenager.exportData(library);
+       printer.printLine("Dane zostay zaktualizowane ");
+       }catch (DataExportExeption e ){
+           printer.printLine(e.getMessage());
+       }
         printer.printLine("Koniec programu");
         dataReader.close();
     }
