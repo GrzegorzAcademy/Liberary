@@ -3,6 +3,7 @@ package pl.javaStart.Library.model;
 import java.util.Objects;
 
 public class Magazine extends Publication {
+    public static final String TYPE = "Magazyn";
     private int month;
     private int day;
     private String languae;
@@ -38,6 +39,19 @@ public class Magazine extends Publication {
     public void setLanguae(String languae) {
         this.languae = languae;
     }
+
+    @Override
+    public String toCsv() {
+        return TYPE + ";" +
+                getTitle() + ";"+
+                getPublisher()+ ";"+
+                languae+ ";"+
+                getYear() + ";" +
+                month + ";"+
+                day+ ";"+
+                languae + "";
+    }
+
     @Override
     public String toString() {
         return super.toString()+ " "+ month +" "+ day+" "+ languae;

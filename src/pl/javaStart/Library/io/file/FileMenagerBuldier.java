@@ -17,9 +17,10 @@ public class FileMenagerBuldier {
         System.out.println("Wybierz format danych ");
         FileType fileType = getfiletype();
         switch (fileType){
-
             case SERIAL:
                 return new SerializableFileMenager();
+            case CSV:
+              return new CsvFileManager();
             default:
                 throw new NoSuchFileTypeExeption("Nie obsługiwany format danych ");
         }

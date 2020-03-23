@@ -2,14 +2,15 @@ package pl.javaStart.Library.model;
 
 import java.util.Objects;
 
-public class Book extends Publication{
+public class Book extends Publication {
 
-    private String author ;
+    private String author;
     private int pages;
-    private String isbn ;
+    private String isbn;
+    public static final String TYPE = "Książka";
 
     public Book(String title, String author, int year, int pages, String publisher, String isbn) {
-        super(title,publisher,year);
+        super(title, publisher, year);
         this.author = author;
         this.pages = pages;
         this.isbn = isbn;
@@ -40,11 +41,24 @@ public class Book extends Publication{
         this.isbn = isbn;
     }
 
-     @Override
+    @Override
+    public String toCsv() {
+        return TYPE + ";" +
+                getTitle() + ";" +
+                getPublisher() + ";" +
+                getYear() + ";" +
+                author + ";" +
+                pages + ";" +
+                isbn + " ";
+
+    }
+
+    @Override
     public String toString() {
-         return super.toString() + author + ", " + pages + ", " + isbn;
-     }
-     @Override
+        return super.toString() + author + ", " + pages + ", " + isbn;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

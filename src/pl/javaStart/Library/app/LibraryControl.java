@@ -2,6 +2,7 @@ package pl.javaStart.Library.app;
 
 import pl.javaStart.Library.exeptions.DataExportExeption;
 import pl.javaStart.Library.exeptions.DataImportExeption;
+import pl.javaStart.Library.exeptions.InvalidDataExeption;
 import pl.javaStart.Library.io.ConsolePrinter;
 import pl.javaStart.Library.io.DataReader;
 import pl.javaStart.Library.io.file.FileMenagerBuldier;
@@ -26,9 +27,10 @@ public class LibraryControl {
         fileMenager = new FileMenagerBuldier(printer, dataReader).bulid();
        try {
            library = fileMenager.importdata();
-       }catch (DataImportExeption e){
+           printer.printLine("Zaimportowano dane z pliku ");
+       }catch (DataImportExeption | InvalidDataExeption e){
            printer.printLine(e.getMessage());
-           System.out.println("zainicjowano nową bazę ");
+           printer.printLine("zainicjowano nową bazę ");
            library = new Library();
        }
 
@@ -86,7 +88,7 @@ public class LibraryControl {
     private void addMagazine() {
         try {
             Magazine magazine = dataReader.readAndCreateMagazine();
-            library.addMagazine(magazine);
+            library.addPublication(magazine);
         } catch (InputMismatchException e) {
             printer.printLine("podano nieprawidłwe dane");
 
@@ -120,7 +122,7 @@ public class LibraryControl {
     private void addBook() {
         try {
             Book book = dataReader.readAndCreateBook();
-            library.addBook(book);
+            library.addPublication(book);
         } catch (InputMismatchException e) {
             printer.printLine("podano nieprawidłwe dane");
 

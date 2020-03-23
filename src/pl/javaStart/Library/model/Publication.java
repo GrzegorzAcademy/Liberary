@@ -5,10 +5,10 @@ import java.util.Objects;
 
 public abstract class Publication implements Serializable {
     private int year;
-    private  String title;
+    private String title;
     private String publisher;
 
-    public Publication(String title, String publisher, int year ) {
+    public Publication(String title, String publisher, int year) {
         this.year = year;
         this.title = title;
         this.publisher = publisher;
@@ -38,10 +38,14 @@ public abstract class Publication implements Serializable {
         this.publisher = publisher;
     }
 
+    public abstract String toCsv();
+
+
     @Override
     public String toString() {
         return title + " " + publisher + " " + year;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
