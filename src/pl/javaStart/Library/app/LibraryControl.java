@@ -19,21 +19,20 @@ public class LibraryControl {
 
     private ConsolePrinter printer = new ConsolePrinter();
     private DataReader dataReader = new DataReader(printer);
-    private Library library ;
+    private Library library;
     private Filemenager fileMenager;
 
 
-   LibraryControl() {
+    LibraryControl() {
         fileMenager = new FileMenagerBuldier(printer, dataReader).bulid();
-       try {
-           library = fileMenager.importdata();
-           printer.printLine("Zaimportowano dane z pliku ");
-       }catch (DataImportExeption | InvalidDataExeption e){
-           printer.printLine(e.getMessage());
-           printer.printLine("zainicjowano nową bazę ");
-           library = new Library();
-       }
-
+        try {
+            library = fileMenager.importdata();
+            printer.printLine("Zaimportowano dane z pliku ");
+        } catch (DataImportExeption | InvalidDataExeption e) {
+            printer.printLine(e.getMessage());
+            printer.printLine("zainicjowano nową bazę ");
+            library = new Library();
+        }
     }
 
     void controlLoop() {
@@ -53,6 +52,12 @@ public class LibraryControl {
                     break;
                 case PRINT_MAGAZINES:
                     printMagazines();
+                    break;
+                case DELETE_BOOK:
+                    deleteBooks();
+                    break;
+                case DELETE_MAGAZINE:
+                    deleteMagazin();
                     break;
                 case EXIT:
                     exit();
@@ -74,7 +79,6 @@ public class LibraryControl {
                 printer.printLine(e.getMessage());
             } catch (InputMismatchException e) {
                 printer.printLine("Wprowadzono wartość, ktora nie jest liczbą, podaj ponownie ");
-
             }
         }
         return option;
@@ -96,6 +100,19 @@ public class LibraryControl {
             printer.printLine("osiagnięto limit pojemności");
         }
     }
+
+    private void deleteMagazin() {
+        try{
+            Magazine magazine = dataReader.readAndCreateMagazine();
+            if (library.removePublication(magazine))
+                printer.printLine("Magazyn został usunięty");
+            else
+                printer.printLine(" Brak magazynu");
+        } catch (InputMismatchException e){
+            printer.printLine("Nie udało sie usunąć magazynu błęðne dane");
+        }
+    }
+
     private void printOptions() {
         printer.printLine("Wybierz opcje");
         for (Option option : Option.values()) {
@@ -104,12 +121,12 @@ public class LibraryControl {
     }
 
     private void exit() {
-       try{
-       fileMenager.exportData(library);
-       printer.printLine("Dane zostay zaktualizowane ");
-       }catch (DataExportExeption e ){
-           printer.printLine(e.getMessage());
-       }
+        try {
+            fileMenager.exportData(library);
+            printer.printLine("Dane zostay zaktualizowane ");
+        } catch (DataExportExeption e) {
+            printer.printLine(e.getMessage());
+        }
         printer.printLine("Koniec programu");
         dataReader.close();
     }
@@ -130,12 +147,29 @@ public class LibraryControl {
             printer.printLine("osiagnięto limit pojemności");
         }
     }
+
+    private void deleteBooks() {
+        try {
+            Book book = dataReader.readAndCreateBook();
+            if (library.removePublication(book)) {
+                printer.printLine(" Ksiązka została usunięta");
+            } else {
+                printer.printLine("Brak wskazanej ksiązki");
+            }
+        }catch (InputMismatchException e ){
+            printer.printLine("Nie udało się usunąc książki, błędne dane");
+
+        }
+    }
+
     public enum Option {
-        EXIT(0,"Wyjście z programu"),
-        ADD_BOOK(1,"Dodanie nowej książki"),
-        PRINT_BOOKS(2,"Dostępne książki"),
-        ADD_MAGAZINES (3,"Dodanie magazynu"),
-        PRINT_MAGAZINES(4,"Wyswietl dostępne magazyny");
+        EXIT(0, "Wyjście z programu"),
+        ADD_BOOK(1, "Dodanie nowej książki"),
+        PRINT_BOOKS(2, "Dostępne książki"),
+        ADD_MAGAZINES(3, "Dodanie magazynu"),
+        PRINT_MAGAZINES(4, "Wyswietl dostępne magazyny"),
+        DELETE_BOOK(5, "Usuń książkę"),
+        DELETE_MAGAZINE(6, "Usuń magazyn");
         private final int value;
         private final String description;
 
@@ -154,15 +188,14 @@ public class LibraryControl {
 
         @Override
         public String toString() {
-            return value + " - " + description ;
+            return value + " - " + description;
         }
+
         static Option createFromInt(int option) throws NoSuchFieldException {
-            try{
+            try {
                 return Option.values()[option];
-            }catch (ArrayIndexOutOfBoundsException e){
+            } catch (ArrayIndexOutOfBoundsException e) {
                 throw new NoSuchFieldException("no option with id try again " + option);
-
-
             }
         }
     }

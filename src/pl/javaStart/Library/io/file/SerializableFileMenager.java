@@ -20,7 +20,7 @@ public class SerializableFileMenager implements Filemenager {
         } catch (FileNotFoundException e) {
             throw new DataExportExeption("Brak pliku " + FILE_NAME);
         } catch (IOException e) {
-            throw new DataExportExeption("Bład zapicu danych do pliku " + FILE_NAME);
+            throw new DataExportExeption("Bład zapisu danych do pliku " + FILE_NAME);
         }
 
     }
