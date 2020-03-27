@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class Library implements Serializable {
 
     private final int INITIAL_CAPACITY = 1;
-    private int publicationsNumber = 0;
+    private int publicationsNumber;
     private Publication[] publications = new Publication[INITIAL_CAPACITY];
 
     public Publication[] getPublications() {
@@ -25,23 +25,23 @@ public class Library implements Serializable {
         publicationsNumber++;
     }
 
-    public boolean removePublication(Publication publication) {
-        final int notFound = -1;
-        int found = notFound;
+    public boolean removePublication(Publication pub) {
+        final int NOT_FOUND = -1;
+        int found = NOT_FOUND;
         int i = 0;
-        while (i<publications.length && found == notFound) {
-            if (publication.equals(publications[i])) {
+        while (i<publications.length && found == NOT_FOUND) {
+            if (pub.equals(publications[i])) {
                 found = i;
             } else {
                 i++;
             }
         }
-        if (found != notFound) {
+        if (found != NOT_FOUND) {
             System.arraycopy(publications, found + 1, publications, found, publications.length - found - 1);
             publicationsNumber--;
 
         }
-        return found != notFound;
+        return found != NOT_FOUND;
     }
 }
 

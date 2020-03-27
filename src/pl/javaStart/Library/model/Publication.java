@@ -3,7 +3,7 @@ package pl.javaStart.Library.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Publication implements Serializable {
+public abstract class Publication implements Serializable, Comparable<Publication> {
     private int year;
     private String title;
     private String publisher;
@@ -59,5 +59,10 @@ public abstract class Publication implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(year, title, publisher);
+    }
+
+    @Override
+    public int compareTo(Publication publication) {
+        return title.compareToIgnoreCase(publication.title);
     }
 }
